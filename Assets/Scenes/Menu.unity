@@ -990,6 +990,18 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     source: {fileID: 0}
+  - name: OctopusHit
+    clip: {fileID: 8300000, guid: 6db75d826928ad7459a0d268e1a7286a, type: 3}
+    loop: 0
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  - name: OctopusDead
+    clip: {fileID: 8300000, guid: e97e0d6c873f30b40a9b63dc0379eff8, type: 3}
+    loop: 0
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
   - name: Theme
     clip: {fileID: 8300000, guid: e07d614fe9dca9d4da54c802ca981579, type: 3}
     loop: 1
