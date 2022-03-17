@@ -22,34 +22,31 @@ public class Gameplay : MonoBehaviour
     {
         switch (name)
         {
-            case "Kidnapping":
-                objective.text = GetObjectiveByCutscene("Kidnapping");
+            case "Appearing":
+                objective.text = "Talk to Kitty";
                 break;
 
             case "Flying":
                 NextLevel();
                 break;
-                
-            case "Noticing":
-                objective.text = GetObjectiveByCutscene("Noticing");
-                break;
-
-            case "Chasing":
-                NextLevel();
-                break;
-                
-            case "Escaping":
-                objective.text = GetObjectiveByCutscene("Escaping");
-                break;
-                
-            case "Preparation":
-                objective.text = GetObjectiveByCutscene("Preparation");
-                break;
-                
+            
             case "Ending":
                 RestartGame();
                 break;
-                
+            
+            default:
+                break;
+        }
+    }
+
+    public void onDialogueEnd(string name)
+    {
+        switch (name)
+        {
+            case "Informing":
+                objective.text = "Prepare for the flight";
+                break;
+
             default:
                 break;
         }
@@ -100,18 +97,6 @@ public class Gameplay : MonoBehaviour
         SceneManager.LoadScene("Respawn");
     }
 
-    private string GetObjectiveByCutscene(string name)
-    {
-        switch (name)
-        {
-            case "":
-                return "";
-            
-            default:
-                return "";
-        } 
-    }
-
 
     private void CheckpointHit(Collider col)
     {
@@ -120,6 +105,35 @@ public class Gameplay : MonoBehaviour
         col.gameObject.SetActive(false);
 
         PlayerPrefs.SetInt("CHECKPOINT", checkpointIndex);
+    }
+    
+    public string GetObjective()
+    {
+        int level = PlayerPrefs.GetInt("LEVEL");
+        int checkpoint = PlayerPrefs.GetInt("CHECKPOINT");
+
+        if(level == 1)
+        {
+            switch (checkpoint)
+            {
+                case 0:
+                    return "Go forward";
+                    
+                case 1:
+                    return "Go forward";
+                    
+                case 2:
+                    return "Prepare for the flight";
+                    
+                case 3:
+                    return "";
+
+                default:
+                    break;
+            }
+        }
+
+        return "";
     }
 
     private void RestartGame()
@@ -163,11 +177,11 @@ public class Gameplay : MonoBehaviour
                 cutscenes[i].GetComponent<PlayableDirector>().Play();
 
                 cutscenes[i].transform.parent.Find("Trigger").gameObject.SetActive(false);
-                
-                // Updating objective
-                objective.text = GetObjectiveByCutscene(cutscenes[cutscenes.Length - 1].name);
             }
         }
+
+        // Updating objective
+        objective.text = GetObjective();
 
         // Move player into the last checkpoint
         transform.position = checkpoints.transform.GetChild(currentCheckpoint).gameObject.transform.position;

@@ -46,7 +46,6 @@ public class TriggerCutscene : MonoBehaviour
         yield return new WaitForSeconds(duration); 
 
         player.GetComponent<Gameplay>().onCutsceneEnd(Cutscene.transform.parent.name);
-
     }
 
 }
