@@ -24,6 +24,7 @@ public class Gameplay : MonoBehaviour
         {
             case "Appearing":
                 objective.text = "Talk to Kitty";
+                FindAndPlayDialogue("Informing");
                 break;
 
             case "Flying":
@@ -45,11 +46,22 @@ public class Gameplay : MonoBehaviour
         {
             case "Informing":
                 objective.text = "Prepare for the flight";
+                FindAndPlayCutscene("Leaving");
                 break;
 
             default:
                 break;
         }
+    }
+
+    public void FindAndPlayCutscene(string name)
+    {
+        GameObject.Find("/Cutscenes/" + name + "/Trigger").GetComponent<TriggerCutscene>().Play();
+    }
+    
+    public void FindAndPlayDialogue(string name)
+    {
+        GameObject.Find("/Instructions/" + name).GetComponent<DialogueManager>().Play();
     }
 
     private void OnCollisionEnter(Collision col)
@@ -168,7 +180,7 @@ public class Gameplay : MonoBehaviour
         }
 
         // Get cutscenes
-        PlayableDirector[] cutscenes = GameObject.FindObjectsOfType<PlayableDirector>();
+        PlayableDirector[] cutscenes = GameObject.Find("Cutscenes").GetComponentsInChildren<PlayableDirector>();
 
         // Forwarding all previous cutscenes
         for(int i = 0; i < cutscenes.Length; i++) {

@@ -20,8 +20,10 @@ public class DialogueManager : MonoBehaviour
     public bool listenEnding = false;
     public bool disablePlayer = true;
 
-    public void Start()
+    public void Play()
     {
+        setDialogueVisible(true);
+
         if(disablePlayer) {
             player.GetComponent<PlayerController>().enabled = false;
         }
@@ -31,13 +33,14 @@ public class DialogueManager : MonoBehaviour
 
     public void onNext()
     {
-        if(listenEnding && currentText == texts.Length - 1) {
-            player.GetComponent<Gameplay>().onDialogueEnd(transform.parent.name);
-
-            // TODO trigger cutscene
-
+        if(currentText == texts.Length - 1) {
             if(disablePlayer) {
                 player.GetComponent<PlayerController>().enabled = true;
+            }
+
+            if(listenEnding)
+            {
+                player.GetComponent<Gameplay>().onDialogueEnd(transform.name);
             }
 
             Destroy(gameObject);
@@ -53,6 +56,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         StartCoroutine(ShowText());
+    }
+
+    private void setDialogueVisible(bool visible)
+    {
+        GetComponent<Image>().enabled = visible;
+        transform.GetChild(0).gameObject.SetActive(visible);
     }
 
     IEnumerator ShowText(float initialDelay = 0)

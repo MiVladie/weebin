@@ -5,11 +5,26 @@ using UnityEngine.Playables;
 
 public class TriggerCutscene : MonoBehaviour
 {
+    public GameObject player;
+
     public PlayableDirector Cutscene;
     public bool disablePlayer = true;
 
     private bool hasTriggered = false;
     public bool listenEnding = false;
+
+    public void Play()
+    {
+        if(disablePlayer) {
+            StartCoroutine(DeactivatePlayer((float)Cutscene.duration));
+        }
+
+        if(listenEnding) {
+            StartCoroutine(NotifyGameplay((float)Cutscene.duration));
+        }
+
+        Cutscene.Play();
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -19,20 +34,13 @@ public class TriggerCutscene : MonoBehaviour
 
         if(other.gameObject.CompareTag("Player"))
         {
-            Cutscene.Play();
             hasTriggered = true;
 
-            if(disablePlayer) {
-                StartCoroutine(DeactivatePlayer((float)Cutscene.duration, other.gameObject));
-            }
-
-            if(listenEnding) {
-                StartCoroutine(NotifyGameplay((float)Cutscene.duration, other.gameObject));
-            }
+            Play();
         }
     }
 
-    IEnumerator DeactivatePlayer(float duration, GameObject player) 
+    IEnumerator DeactivatePlayer(float duration) 
     {
         player.GetComponent<PlayerController>().enabled = false;
 
@@ -41,7 +49,7 @@ public class TriggerCutscene : MonoBehaviour
         player.GetComponent<PlayerController>().enabled = true;
     }
 
-    IEnumerator NotifyGameplay(float duration, GameObject player) 
+    IEnumerator NotifyGameplay(float duration) 
     {
         yield return new WaitForSeconds(duration); 
 
