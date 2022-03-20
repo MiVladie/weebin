@@ -24,6 +24,8 @@ public class Chat : MonoBehaviour
         previousButton.GetComponent<Button>().onClick.AddListener(delegate { onPrevious(); });
         nextButton.GetComponent<Button>().onClick.AddListener(delegate { onNext(); });
 
+        isReading = true;
+
         // Displaying first text
         iManager.Play(current);
 
