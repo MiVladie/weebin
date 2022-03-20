@@ -61,7 +61,7 @@ public class Gameplay : MonoBehaviour
     
     public void FindAndPlayDialogue(string name)
     {
-        GameObject.Find("/Instructions/" + name).GetComponent<DialogueManager>().Play();
+        GameObject.Find("/Instructions/" + name).transform.GetChild(1).GetComponent<Dialogue>().Begin();
     }
 
     private void OnCollisionEnter(Collision col)
