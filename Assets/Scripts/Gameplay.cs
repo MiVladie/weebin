@@ -27,8 +27,12 @@ public class Gameplay : MonoBehaviour
                 FindAndPlayDialogue("Informing");
                 break;
 
-            case "Flying":
-                NextLevel();
+            case "Congratulating":
+                FindAndPlayDialogue("Congratulating");
+                break;
+                
+            case "Departing":
+                // NextLevel();
                 break;
             
             case "Ending":
@@ -47,6 +51,10 @@ public class Gameplay : MonoBehaviour
             case "Informing":
                 objective.text = "Prepare for the flight";
                 FindAndPlayCutscene("Leaving");
+                break;
+                
+            case "Congratulating":
+                FindAndPlayCutscene("Departing");
                 break;
 
             default:

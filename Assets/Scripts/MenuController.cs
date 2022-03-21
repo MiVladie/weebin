@@ -72,7 +72,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("CHECKPOINT", 0);
         PlayerPrefs.SetInt("LIVES", 9);
 
-        SceneManager.LoadScene("Earth");
+        SceneManager.LoadScene("Hetimiul");
     }
 
     public void Exit()
