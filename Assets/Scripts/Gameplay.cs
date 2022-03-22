@@ -32,7 +32,15 @@ public class Gameplay : MonoBehaviour
                 break;
                 
             case "Departing":
-                // NextLevel();
+                NextLevel();
+                break;
+            
+            case "Appreciating":
+                FindAndPlayDialogue("Appreciating");
+                break;
+                
+            case "Taking":
+                NextLevel();
                 break;
             
             case "Ending":
@@ -55,6 +63,10 @@ public class Gameplay : MonoBehaviour
                 
             case "Congratulating":
                 FindAndPlayCutscene("Departing");
+                break;
+
+            case "Appreciating":
+                FindAndPlayCutscene("Going");
                 break;
 
             default:

@@ -6,9 +6,14 @@ public class MoveTrajectory : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] bool rotate = true;
+    [SerializeField] bool moveOnCollision = false;
+    [SerializeField] bool oneWay = false;
     [SerializeField] Vector3[] pathPoints;
 
     private int nextPosIndex;
+    private bool isHolding;
+    private bool endReached = false;
+
     private Vector3 nextPos;
 
     // Start is called before the first frame update
@@ -20,7 +25,26 @@ public class MoveTrajectory : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        bool canMove = true;
+
+        if(moveOnCollision)
+        {
+            if(!isHolding)
+            {
+                canMove = false;
+            }
+        }
+        
+        if(oneWay)
+        {
+            if(endReached)
+            {
+                canMove = false;
+            }
+        }
+
+        if(canMove)
+            Move();
     }
 
     void Move()
@@ -30,8 +54,16 @@ public class MoveTrajectory : MonoBehaviour
             nextPosIndex++;
 
             if (nextPosIndex >= pathPoints.Length)
-            {
-                nextPosIndex = 0;
+            {   
+                if(oneWay) {
+                    endReached = true;
+                    
+                    return;
+                }
+                else
+                {
+                    nextPosIndex = 0;
+                }
             }
 
             nextPos = pathPoints[nextPosIndex];
@@ -43,6 +75,22 @@ public class MoveTrajectory : MonoBehaviour
         else
         {
             GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime));
+        }
+    }
+    
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.CompareTag("Player"))
+        {
+            isHolding = true;
+        }
+    }
+    
+    private void OnCollisionExit(Collision col)
+    {
+        if(col.gameObject.CompareTag("Player"))
+        {
+            isHolding = false;
         }
     }
 
