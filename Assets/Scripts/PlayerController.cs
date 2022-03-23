@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     {
         // Shooting
         if(enableShooting && canShoot) {
-            FindObjectOfType<AudioManager>().Play("Shoot");
+            FindObjectOfType<AudioManager>()?.Play("Shoot");
 
             GameObject bullet = Instantiate(hairball, transform.position + new Vector3(0, 0.35f, isForward ? 1.5f : -1.5f), Quaternion.Euler(0, 0, 10), rounds) as GameObject;
             
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
             if(groundColliders.Count == 0)
             {
-                FindObjectOfType<AudioManager>().Play("Jump");
+                FindObjectOfType<AudioManager>()?.Play("Jump");
             }
         }
     }

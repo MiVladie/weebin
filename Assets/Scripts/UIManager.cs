@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenMenu()
     {
-        FindObjectOfType<AudioManager>().Play("Button");
+        FindObjectOfType<AudioManager>()?.Play("Button");
         
         SceneManager.LoadScene("Menu");
     }

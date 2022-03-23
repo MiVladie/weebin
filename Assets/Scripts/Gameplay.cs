@@ -122,7 +122,7 @@ public class Gameplay : MonoBehaviour
 
         int currentLives = PlayerPrefs.GetInt("LIVES") - 1;
 
-        FindObjectOfType<AudioManager>().Play("Die");
+        FindObjectOfType<AudioManager>()?.Play("Die");
 
         PlayerPrefs.SetInt("LIVES", currentLives);
 

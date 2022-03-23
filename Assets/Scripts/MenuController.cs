@@ -59,14 +59,14 @@ public class MenuController : MonoBehaviour
 
     public void ContinueGame()
     {
-        FindObjectOfType<AudioManager>().Play("Button");
+        FindObjectOfType<AudioManager>()?.Play("Button");
 
         SceneManager.LoadScene(PlayerPrefs.GetInt("LEVEL"));
     }
 
     public void NewGame()
     {
-        FindObjectOfType<AudioManager>().Play("Button");
+        FindObjectOfType<AudioManager>()?.Play("Button");
 
         PlayerPrefs.SetInt("LEVEL", 1);
         PlayerPrefs.SetInt("CHECKPOINT", 0);
