@@ -80872,7 +80872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8777479597934832330, guid: eb5b037cd5bd2ff4d9c3d9d1837dafd8, type: 3}
       propertyPath: texts.Array.data[3]
-      value: Me and our fellow Kitilians are asking you to help us fight the enemies!
+      value: Me and our fellow Kittilians are asking you to help us fight the enemies!
       objectReference: {fileID: 0}
     - target: {fileID: 8777479597934832330, guid: eb5b037cd5bd2ff4d9c3d9d1837dafd8, type: 3}
       propertyPath: texts.Array.data[4]

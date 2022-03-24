@@ -6682,7 +6682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8777479597934832330, guid: eb5b037cd5bd2ff4d9c3d9d1837dafd8, type: 3}
       propertyPath: texts.Array.data[2]
-      value: However, our friends at Juseno planet need help to fight against __!
+      value: However, our friends at Juseno planet need help to fight against froggies!
       objectReference: {fileID: 0}
     - target: {fileID: 8777479597934832330, guid: eb5b037cd5bd2ff4d9c3d9d1837dafd8, type: 3}
       propertyPath: texts.Array.data[3]
@@ -6690,7 +6690,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8777479597934832330, guid: eb5b037cd5bd2ff4d9c3d9d1837dafd8, type: 3}
       propertyPath: texts.Array.data[4]
-      value: Using them, you will have an advantage to fight against __ much quicker!
+      value: Using them, you will have an advantage to fight against froggies much
+        quicker!
       objectReference: {fileID: 0}
     - target: {fileID: 8777479597934832330, guid: eb5b037cd5bd2ff4d9c3d9d1837dafd8, type: 3}
       propertyPath: texts.Array.data[5]
@@ -45001,7 +45002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5113651357318585027, guid: 1b2ada6b12b0dec4eb83a5cbd3e8a8e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1087.5
+      value: 1065
       objectReference: {fileID: 0}
     - target: {fileID: 5113651357318585027, guid: 1b2ada6b12b0dec4eb83a5cbd3e8a8e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51770,7 +51771,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go forwards
+  m_Text: Find Kittilian
 --- !u!222 &1297354949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -67919,7 +67920,7 @@ MonoBehaviour:
   player: {fileID: 1893351594}
   Cutscene: {fileID: 667625477}
   disablePlayer: 1
-  listenEnding: 0
+  listenEnding: 1
 --- !u!65 &1715546833
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81845,7 +81846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8938983864538558374, guid: 89a018e1afd72924791ae66307f33e5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 8938983864538558374, guid: 89a018e1afd72924791ae66307f33e5e, type: 3}
       propertyPath: m_LocalPosition.z

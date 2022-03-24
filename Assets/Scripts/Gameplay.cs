@@ -22,12 +22,14 @@ public class Gameplay : MonoBehaviour
     {
         switch (name)
         {
+            // Hetimiul
             case "Appearing":
                 objective.text = "Talk to Kitty";
                 FindAndPlayDialogue("Informing");
                 break;
 
             case "Congratulating":
+                objective.text = "Talk to Kitty";
                 FindAndPlayDialogue("Congratulating");
                 break;
                 
@@ -35,7 +37,13 @@ public class Gameplay : MonoBehaviour
                 NextLevel();
                 break;
             
+            // Cisius
+            case "Observing":
+                objective.text = "Rescue Kittilian";
+                break;
+
             case "Appreciating":
+                objective.text = "Talk to Kittilian";
                 FindAndPlayDialogue("Appreciating");
                 break;
                 
@@ -43,7 +51,17 @@ public class Gameplay : MonoBehaviour
                 NextLevel();
                 break;
             
-            case "Ending":
+            // Juseno
+            case "Looking":
+                objective.text = "Save Kittilian";
+                break;
+
+            case "Farewell":
+                objective.text = "Talk to Kittilian";
+                FindAndPlayDialogue("Farewell");
+                break;
+
+            case "Fading":
                 RestartGame();
                 break;
             
@@ -56,17 +74,26 @@ public class Gameplay : MonoBehaviour
     {
         switch (name)
         {
+            // Hetimiul
             case "Informing":
-                objective.text = "Prepare for the flight";
+                objective.text = "Reach the end";
                 FindAndPlayCutscene("Leaving");
                 break;
                 
             case "Congratulating":
+                objective.text = "Leave the planet";
                 FindAndPlayCutscene("Departing");
                 break;
 
+            // Cisius
             case "Appreciating":
+                objective.text = "Leave the planet";
                 FindAndPlayCutscene("Going");
+                break;
+                
+            // Juseno
+            case "Farewell":
+                FindAndPlayCutscene("Fading");
                 break;
 
             default:
@@ -146,23 +173,29 @@ public class Gameplay : MonoBehaviour
 
         if(level == 1)
         {
-            switch (checkpoint)
-            {
-                case 0:
-                    return "Go forward";
-                    
-                case 1:
-                    return "Go forward";
-                    
-                case 2:
-                    return "Prepare for the flight";
-                    
-                case 3:
-                    return "";
+            if(checkpoint < 2)
+                return "Go forwards";
 
-                default:
-                    break;
-            }
+            if(checkpoint >= 2)
+                return "Reach the end";
+        }
+
+        if(level == 2)
+        {
+            if(checkpoint < 7)
+                return "Find Kittilian";
+
+            if(checkpoint == 7)
+                return "Rescue Kittilian";
+        }
+        
+        if(level == 3)
+        {
+            if(checkpoint < 7)
+                return "Liberate the planet";
+
+            if(checkpoint >= 7)
+                return "Save Kittilian";
         }
 
         return "";
