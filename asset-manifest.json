@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/weebin/static/css/main.0c845562.chunk.css",
+    "main.js": "/weebin/static/js/main.78e1e18b.chunk.js",
+    "main.js.map": "/weebin/static/js/main.78e1e18b.chunk.js.map",
+    "runtime-main.js": "/weebin/static/js/runtime-main.1eee2e5f.js",
+    "runtime-main.js.map": "/weebin/static/js/runtime-main.1eee2e5f.js.map",
+    "static/js/2.a290e696.chunk.js": "/weebin/static/js/2.a290e696.chunk.js",
+    "static/js/2.a290e696.chunk.js.map": "/weebin/static/js/2.a290e696.chunk.js.map",
+    "index.html": "/weebin/index.html",
+    "static/css/main.0c845562.chunk.css.map": "/weebin/static/css/main.0c845562.chunk.css.map",
+    "static/js/2.a290e696.chunk.js.LICENSE.txt": "/weebin/static/js/2.a290e696.chunk.js.LICENSE.txt",
+    "static/media/Layout.module.scss": "/weebin/static/media/background.fa5291aa.png",
+    "static/media/logo.74eb237d.png": "/weebin/static/media/logo.74eb237d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1eee2e5f.js",
+    "static/js/2.a290e696.chunk.js",
+    "static/css/main.0c845562.chunk.css",
+    "static/js/main.78e1e18b.chunk.js"
+  ]
+}
