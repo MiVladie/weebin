@@ -33,11 +33,23 @@ $spacing: 3em;
 
 		flex-flow: column;
 
-		.Trailer,
+		.Sliders,
 		.Actions {
 			width: 100%;
 
 			margin-top: $spacing;
+		}
+
+		.Sliders {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			aspect-ratio: 16 / 9;
+
+			div {
+				max-width: 33%;
+			}
 		}
 
 		.Actions {
@@ -116,7 +128,7 @@ $spacing: 3em;
 		.Container {
 			flex-flow: row;
 
-			.Trailer {
+			.Sliders {
 				width: 70%;
 			}
 

@@ -1,0 +1,34 @@
+.Holder {
+	width: 100%;
+	height: 100%;
+
+	position: relative;
+
+	transition: all 0.5s;
+
+	.Image {
+		width: 100%;
+		height: 100%;
+
+		background-repeat: no-repeat;
+		background-position: center;
+		object-fit: contain;
+
+		position: absolute;
+
+		transition: all 0.75s;
+		opacity: 0;
+	}
+
+	.Active {
+		opacity: 1;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.Holder {
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
+}
