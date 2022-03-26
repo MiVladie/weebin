@@ -14,6 +14,9 @@ const Layout: React.FC = ({ children }) => {
 			case '/play':
 				return classes.Play;
 
+			case '/multiplayer':
+				return classes.Play;
+
 			default:
 				return '';
 		}

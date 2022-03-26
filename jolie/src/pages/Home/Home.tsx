@@ -43,9 +43,11 @@ const Home: React.FC = () => {
 					</div>
 
 					<div className={classes.Actions}>
+						{!isMobile() && <Button onClick={() => navigate('/play')}>Play</Button>}
+
 						{!isMobile() && (
-							<Button onClick={() => navigate('/play')} className={classes.Play}>
-								Play
+							<Button onClick={() => navigate('/multiplayer')} className={classes.Play}>
+								Multiplayer
 							</Button>
 						)}
 

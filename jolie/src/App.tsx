@@ -7,6 +7,7 @@ import Layout from 'hoc/Layout/Layout';
 
 import Home from 'pages/Home/Home';
 import Game from 'pages/Game/Game';
+import Multiplayer from 'pages/Multiplayer/Multiplayer';
 
 const App: React.FC = () => (
 	<Layout>
@@ -17,6 +18,7 @@ const App: React.FC = () => (
 		<Routes>
 			<Route path='/' element={<Home />} />
 			<Route path='/play' element={<Game />} />
+			<Route path='/multiplayer' element={<Multiplayer />} />
 		</Routes>
 	</Layout>
 );
