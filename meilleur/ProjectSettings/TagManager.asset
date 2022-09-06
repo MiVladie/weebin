@@ -11,6 +11,7 @@ TagManager:
   - CutsceneTrigger
   - Bullet
   - Hairballs
+  - Pop
   layers:
   - Default
   - TransparentFX

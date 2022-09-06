@@ -8,9 +8,12 @@ public class UIManager : MonoBehaviour
 {
     public Text[] lives;
 
+    public GameObject popManager;
+
     void Start()
     {
         UpdateLives();
+        AssignPopMenu();
     }
 
     void Update()
@@ -42,6 +45,16 @@ public class UIManager : MonoBehaviour
         FindObjectOfType<AudioManager>()?.Play("Button");
         
         SceneManager.LoadScene("Menu");
+    }
+
+    void AssignPopMenu()
+    {
+        PopController[] pops = FindObjectsOfType<PopController>();
+
+        for(int i = 0; i < pops.Length; i++)
+        {
+            pops[i].popManager = this.popManager;
+        }
     }
 
 }

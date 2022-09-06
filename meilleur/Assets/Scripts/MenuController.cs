@@ -34,6 +34,12 @@ public class MenuController : MonoBehaviour
         {
             ContinueGame();
         }
+        
+        // Scoreboard
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            Scoreboard();
+        }
 
         // Exit
         if(canExit && Input.GetKeyDown(KeyCode.Escape))
@@ -44,6 +50,12 @@ public class MenuController : MonoBehaviour
 
     void AnalyseProgress()
     {
+        if(!PlayerPrefs.HasKey("RANK")) {
+            PlayerPrefs.SetInt("RANK", 0);
+            PlayerPrefs.SetString("SCOREBOARD", "");
+            PlayerPrefs.SetString("LAST_SCORE", "");
+        }
+
         canContinue = PlayerPrefs.HasKey("LEVEL") &&
             PlayerPrefs.HasKey("LIVES") &&
             (
@@ -60,19 +72,47 @@ public class MenuController : MonoBehaviour
     public void ContinueGame()
     {
         FindObjectOfType<AudioManager>()?.Play("Button");
+        FindObjectOfType<QuizManager>()?.ApplyQuestions();
 
-        SceneManager.LoadScene(PlayerPrefs.GetInt("LEVEL"));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("LEVEL"));    
     }
 
     public void NewGame()
     {
         FindObjectOfType<AudioManager>()?.Play("Button");
+        FindObjectOfType<QuizManager>()?.ApplyQuestions(true);
+
+        int rank = PlayerPrefs.GetInt("RANK");
+
+        switch(rank)
+        {
+            case 0:
+                PlayerPrefs.SetInt("POINTS", 250);
+                break;
+                
+            case 1:
+                PlayerPrefs.SetInt("POINTS", 500);
+                break;
+                
+            case 2:
+                PlayerPrefs.SetInt("POINTS", 1000);
+                break;
+                
+            default:
+                break;
+        }
 
         PlayerPrefs.SetInt("LEVEL", 1);
         PlayerPrefs.SetInt("CHECKPOINT", 0);
         PlayerPrefs.SetInt("LIVES", 9);
+        PlayerPrefs.SetInt("QUIZZES_ANSWERED", 0);
 
         SceneManager.LoadScene("Hetimiul");
+    }
+
+    public void Scoreboard()
+    {
+        SceneManager.LoadScene("Scoreboard");
     }
 
     public void Exit()

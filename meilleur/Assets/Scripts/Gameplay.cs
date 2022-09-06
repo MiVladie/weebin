@@ -151,6 +151,30 @@ public class Gameplay : MonoBehaviour
 
         FindObjectOfType<AudioManager>()?.Play("Die");
 
+        int rank = PlayerPrefs.GetInt("RANK");
+        int points = PlayerPrefs.GetInt("POINTS");
+
+        switch(rank)
+        {
+            case 0:
+                points -= 5;
+                break;
+                
+            case 1:
+                points -= 10;
+                break;
+                
+            case 2:
+                points -= 20;
+                break;
+                
+            default:
+                break;
+        }
+
+        int newPoints = (int)Mathf.Max(points, 0);
+
+        PlayerPrefs.SetInt("POINTS", newPoints);
         PlayerPrefs.SetInt("LIVES", currentLives);
 
         SceneManager.LoadScene("Respawn");
@@ -208,7 +232,7 @@ public class Gameplay : MonoBehaviour
         PlayerPrefs.SetInt("LEVEL", 1);
         PlayerPrefs.SetInt("CHECKPOINT", 0);
 
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Results");
     }
 
     private void NextLevel()
@@ -217,12 +241,17 @@ public class Gameplay : MonoBehaviour
         
         PlayerPrefs.SetInt("LEVEL", nextLevel);
         PlayerPrefs.SetInt("CHECKPOINT", 0);
+        PlayerPrefs.SetInt("QUIZZES_ANSWERED", 0);
 
         SceneManager.LoadScene(nextLevel);
     }
 
     private void Spawn()
     {
+        GameObject[] pops = GameObject.FindGameObjectsWithTag("Pop");
+
+        FillInPopQuestions(pops);
+
         // Get current checkpoint
         int currentCheckpoint = PlayerPrefs.GetInt("CHECKPOINT");
 
@@ -236,13 +265,22 @@ public class Gameplay : MonoBehaviour
         PlayableDirector[] cutscenes = GameObject.Find("Cutscenes").GetComponentsInChildren<PlayableDirector>();
 
         // Forwarding all previous cutscenes
-        for(int i = 0; i < cutscenes.Length; i++) {
+        for(int i = 0; i < cutscenes.Length; i++)
+        {
             if(cutscenes[i].transform.position.z <= checkpoints.transform.GetChild(currentCheckpoint).position.z) {
                 cutscenes[i].GetComponent<PlayableDirector>().time = cutscenes[i].GetComponent<PlayableDirector>().duration;
                 cutscenes[i].GetComponent<PlayableDirector>().Play();
 
                 cutscenes[i].transform.parent.Find("Trigger").gameObject.SetActive(false);
             }
+        }
+
+        // Hiding all previous pop questions
+        int answered = PlayerPrefs.GetInt("QUIZZES_ANSWERED");
+        
+        for(int i = 0; i < answered; i++)
+        {
+            pops[i].transform.parent.gameObject.SetActive(false);
         }
 
         // Updating objective
@@ -252,6 +290,26 @@ public class Gameplay : MonoBehaviour
         transform.position = checkpoints.transform.GetChild(currentCheckpoint).gameObject.transform.position;
 
         isPlaying = true;
+    }
+
+    public void FillInPopQuestions(GameObject[] pops)
+    {
+        int planet = PlayerPrefs.GetInt("LEVEL");
+        string planetQuestionsIds = PlayerPrefs.GetString("QUIZ_QUESTIONS").Split('H', 'C', 'J')[planet];
+        QuizManager quizManager = GameObject.Find("QuizManager").GetComponent<QuizManager>();
+        
+        for(int i = 0; i < pops.Length; i++)
+        {
+            int planetQuestionId = int.Parse(planetQuestionsIds.ToCharArray()[i].ToString());
+
+            string q = quizManager.GetPlanetQuestion(planet, planetQuestionId);
+            string[] o = quizManager.GetPlanetOptions(planet, planetQuestionId);
+            string a = quizManager.GetPlanetAnswer(planet, planetQuestionId);
+
+            pops[i].GetComponent<PopController>().current = i + 1;
+            pops[i].GetComponent<PopController>().total = pops.Length;
+            pops[i].GetComponent<PopController>().setPopQuestion(q, o, a);
+        }
     }
 
 }

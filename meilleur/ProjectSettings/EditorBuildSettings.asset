@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Juseno.unity
     guid: 451d2e0b8b4b79e48864da773b89ad97
   - enabled: 1
+    path: Assets/Scenes/Scoreboard.unity
+    guid: c9d6dbf06cc21c8428dbab26ce070d1f
+  - enabled: 1
+    path: Assets/Scenes/Results.unity
+    guid: c420e5cdac58fcd4eab1a71a98812ad7
+  - enabled: 1
     path: Assets/Scenes/Respawn.unity
     guid: a4dfc82ac23896847ae83235178563a6
   m_configObjects: {}
